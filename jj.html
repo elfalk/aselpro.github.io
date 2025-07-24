@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aselpro - خدمات التأشيرات والخدمات الرقمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4b0082; /* لون الموف الغامق */
+            --secondary-color: #8a2be2;
+            --accent-color: #f0e6ff;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f7fe;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* التصميم العام */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        /* الشريط العلوي */
+        header {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        /* قسم البطل */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a11cb 100%);
+            color: white;
+            text-align: center;
+            padding: 180px 0 100px;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--accent-color);
+        }
+        
+        /* قسم الخدمات */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            background: var(--accent-color);
+            text-align: center;
+            padding: 25px;
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .service-content ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .service-content ul li {
+            padding: 8px 0;
+            position: relative;
+            padding-right: 25px;
+        }
+        
+        .service-content ul li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            top: 8px;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        /* قسم سهولة الاستخدام */
+        .easy-browse {
+            background-color: var(--accent-color);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            flex: 1 1 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .feature i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* قسم التواصل */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+        
+        .contact-method {
+            flex: 1 1 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-method i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-method h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .contact-method p {
+            margin-bottom: 10px;
+        }
+        
+        /* الرسالة */
+        .mission {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6a11cb 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .mission .section-title h2 {
+            color: white;
+        }
+        
+        .mission .section-title::after {
+            background: white;
+        }
+        
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .mission-content p {
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            display: block;
+            margin: 30px 0;
+        }
+        
+        /* التذييل */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 45px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* التجاوب */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--primary-color);
+                width: 100%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: 0.5s;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Asel<span>pro</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#visa">خدمات التأشيرات</a></li>
+                    <li><a href="#digital">الخدمات الرقمية</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم البطل -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>مرحبًا بك في Aselpro</h1>
+                <p>منصتك المتخصصة في تقديم خدمات احترافية وسريعة في مجالي التأشيرات والخدمات الرقمية. هدفنا هو تسهيل حياتك وتوفير تجربة سلسة وآمنة لكل من يبحث عن احترافية في إنهاء إجراءاته أو تعزيز حضوره الرقمي.</p>
+                <a href="#services" class="btn">اكتشف خدماتنا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- خدمات التأشيرات -->
+    <section id="visa">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدمات التأشيرات والأوراق الرسمية</h2>
+                <p>في Aselpro، بنقدّم حلول متكاملة ومُخصصة للأشخاص اللي بيخططوا للسفر، سواء سياحة أو عمل</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تأشيرة شنغن</h3>
+                        <p>تجهيز ملف تأشيرة شنغن بشكل منظم ومحترف مع ضمان استيفاء جميع المتطلبات</p>
+                        <ul>
+                            <li>كشف حساب بنكي مقبول</li>
+                            <li>خطاب تعريف من جهة العمل</li>
+                            <li>إنشاء سيرة ذاتية احترافية</li>
+                            <li>تنظيم الملف بالكامل</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تأشيرات الخليج العربي</h3>
+                        <p>خدمات تأشيرات لدول الخليج العربي مع متابعة كاملة للمتطلبات</p>
+                        <ul>
+                            <li>السعودية</li>
+                            <li>الإمارات العربية المتحدة</li>
+                            <li>قطر</li>
+                            <li>الكويت</li>
+                            <li>عُمان</li>
+                            <li>البحرين</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>تجهيز الأوراق الرسمية</h3>
+                        <p>خدمات متكاملة لتجهيز جميع الأوراق المطلوبة للسفارات</p>
+                        <ul>
+                            <li>كشف حساب بنكي معتمد</li>
+                            <li>خطاب تعريف من جهة العمل (HR Letter)</li>
+                            <li>إنشاء سيرة ذاتية احترافية (CV)</li>
+                            <li>تنظيم الملف بالكامل</li>
+                            <li>دعم في استيفاء كل الشروط المطلوبة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الخدمات الرقمية -->
+    <section id="digital" style="background-color: #f8f5ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>الخدمات الرقمية ووسائل التواصل الاجتماعي</h2>
+                <p>كمان بنقدم مجموعة خدمات رقمية تساعدك في التميز على الإنترنت</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>المتابعين والتفاعل</h3>
+                        <p>تزويد متابعين وتفاعل حقيقي لكل منصات التواصل الاجتماعي</p>
+                        <ul>
+                            <li>فيسبوك</li>
+                            <li>إنستجرام</li>
+                            <li>تيك توك</li>
+                            <li>يوتيوب</li>
+                            <li>تويتر</li>
+                            <li>سناب شات</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Canva Premium</h3>
+                        <p>تفعيل حساب Canva Premium بأسعار مناسبة لمدة عام كامل</p>
+                        <ul>
+                            <li>وصول كامل لمكتبة Canva</li>
+                            <li>ميزات التصميم الاحترافية</li>
+                            <li>مكتبة صور ومقاطع فيديو مميزة</li>
+                            <li>حساب فريق للعمل الجماعي</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>التوثيق والدعم الفني</h3>
+                        <p>خدمات متخصصة في توثيق الحسابات والدعم الفني المستمر</p>
+                        <ul>
+                            <li>توثيق صفحات فيسبوك</li>
+                            <li>توثيق حسابات إنستجرام</li>
+                            <li>دعم فني سريع</li>
+                            <li>حل المشكلات الفنية</li>
+                            <li>استشارات متخصصة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- سهولة التصفح -->
+    <section class="easy-browse">
+        <div class="container">
+            <div class="section-title">
+                <h2>سهولة التصفح وتنظيم المحتوى</h2>
+                <p>نوفر تجربة مستخدم مريحة وسهلة لجميع العملاء</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-sitemap"></i>
+                    <h3>تنظيم الخدمات</h3>
+                    <p>كل خدمة عندنا ليها صفحة منفصلة بتشرح التفاصيل كاملة. أول ما تختار الخدمة، هتدخل على صفحة بتوضح الخطوات، المتطلبات، وسعر الخدمة، علشان تقدر تقرر وانت مطمئن.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-palette"></i>
+                    <h3>تصميم مريح</h3>
+                    <p>تصميم الموقع بسيط وأنيق، بألوان مريحة تشمل مزيج من الموف الغامق، يعكس احترافية وراحة نفسية في نفس الوقت.</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>دعم فوري</h3>
+                    <p>تواصل معنا بسيط وسريع من خلال قنوات متعددة، مع فريق دعم جاهز للإجابة على استفساراتك في أي وقت.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التواصل -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>تواصل معنا</h2>
+                <p>يسعدنا تواصلك معنا في أي وقت للإجابة على استفساراتك</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-method">
+                    <i class="fab fa-facebook"></i>
+                    <h3>صفحة الفيسبوك</h3>
+                    <p>Aselpro</p>
+                    <a href="#" class="btn">زيارة الصفحة</a>
+                </div>
